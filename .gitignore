@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+*.log
+*.swp
+.idea/
+lib/*.js
+lib/*.map
+lib/routes/*.js
+lib/routes/*.map
+vendor/ogl-data/*

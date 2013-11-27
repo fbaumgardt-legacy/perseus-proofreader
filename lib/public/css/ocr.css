@@ -1,0 +1,39 @@
+.ocr_line{
+	float:left;
+	clear:left;
+	margin:5px;
+}
+.dropdown-toggle{
+	height:34px;
+}
+// Custom edits for including btn-groups within btn-groups 
+// (useful for including dropdown buttons within a btn-group)
+.btn-group > .btn-group > .btn.dropdown-toggle {
+  margin-left: 0;
+  .border-radius(0);
+}
+.btn-group > .btn-group:last-child > .btn.dropdown-toggle {
+  margin-left: 0;
+  .border-top-right-radius(0);
+  .border-bottom-right-radius(@baseBorderRadius);
+  border-left: 1px;
+}
+.btn-group > .btn-group:first-child > .btn.dropdown-toggle {
+  margin-right: 0;
+  .border-top-left-radius(0);
+  .border-bottom-left-radius(@baseBorderRadius);
+  border-right:1px;
+}
+
+// remove space between consecutive dropdown btn-groups.
+.btn-group.dropdown+.btn-group.dropdown {
+    margin-left: 0;
+}
+
+.btn-group:first-child {
+	.border-top-left-radius(0);
+}
+
+.btn-group:last-child {
+  .border-top-right-radius(0);
+}
