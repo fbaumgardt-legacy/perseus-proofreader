@@ -4,7 +4,9 @@ res.locals.json = req.data
 res.locals.work = req.params.work
 res.locals.page = req.params.page
 
-git.Repo.open('',(error,repo) ->
+git.Repo.open('../vendor/ogl-data/.git',(error,repo) ->
+  if (error) throw error
 
-# get index, add/update file, create commit
+  repo.getIndex
+  # get index, add/update file, create commit
 )

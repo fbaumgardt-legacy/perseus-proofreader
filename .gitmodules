@@ -1,0 +1,3 @@
+[submodule "vendor/ogl-data"]
+	path = vendor/ogl-data
+	url = /u/baumgardt/Development/ogl/perseus-proofreader/vendor/ogl-data
