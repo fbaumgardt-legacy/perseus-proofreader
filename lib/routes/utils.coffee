@@ -1,7 +1,7 @@
 libfs = require('fs')
 libpath = require('path')
-libcrypto = require('crypto'
-libxml = require('libxmljs'))
+libcrypto = require('crypto')
+libxml = require('libxmljs')
 Array::last = -> @[@length - 1]
 
 dirsIn = (path) -> libfs.readdirSync(path).filter (x) -> libfs.statSync(libpath.join(path,x)).isDirectory() and x[0] isnt '.'
@@ -17,11 +17,13 @@ parser.sax.on 'startDocument',() ->
 
 parser.sax.on 'startElementNS',(name,attrs) ->
   attr = {}; attr[x[0]] = x[3] for x in attrs
-  element = {tag:name,attributes:attr,children:[]}
+  element =
+    tag:name
+    attributes:attr
+    children:[]
   parser.temp.last().children.push(element)
-  parser.temp.last()[element.tag] = (i) ->
-    chldrn = this.children.filter((x) -> x.tag is element.tag)
-    if i? then chldrn[i] else chldrn
+  # dirty hack to hardcode name value in function for later serialization:
+  parser.temp.last()[name] = new Function("i","var chldrn;chldrn = this.children.filter(function(x) {return x.tag === \"#{name}\";});if (i != null) {return chldrn[i];} else {return chldrn;}")
   parser.temp.push(element)
 
 parser.sax.on 'characters',(chars) ->
