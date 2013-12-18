@@ -10,7 +10,7 @@ filesIn = (path,exts) -> libfs.readdirSync(path).filter (x) -> x[x.lastIndexOf('
 parser =
   sax: do libxml.SaxParser
   temp: []
-  json: {}
+  json: {doc:{},index:{}}
 
 parser.sax.on 'startDocument',() ->
   parser.temp= [{children:[]}]
@@ -33,7 +33,7 @@ parser.sax.on 'endElementNS', (name) ->
   parser.temp.pop()
 
 parser.sax.on 'endDocument', () ->
-  parser.json[parser.temp.last().children[0].tag] = parser.temp.pop().children[0]
+  parser.json.doc[parser.temp.last().children[0].tag] = parser.temp.pop().children[0]
 
 parser.sax.on 'error', () ->
 

@@ -10,4 +10,4 @@ module.exports =
     next()
 
   show: (req,res) ->
-    res.render('note')
+    res.render('page')
