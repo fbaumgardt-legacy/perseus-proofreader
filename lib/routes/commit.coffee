@@ -1,38 +1,45 @@
-git = require('nodegit')
+git = new require('nodegit')
 fs = require('fs')
 libpath = require('path')
+libxml = require('libxmljs')
 
-commit = (repopath,filepath) ->
+commit = (res,repopath,filepath) ->
   git.Repo.open(repopath,(error,repo) ->
-    if (error)
-      res.send(500)
+    res.send 500 if error
     repo.openIndex((error,index) ->
-      if (error)
-        res.send(500)
+      res.send 500 if error
       index.addByPath(filepath, (error) ->
-        if (error)
-          res.send(500)
+        res.send 500 if error
         index.write((error) ->
-          if (error)
-            res.send(500)
-          else
-            res.send(200)
+          res.send 500 if error
+          index.writeTree((error,oid) ->
+            res.send 500 if error
+            git.Reference.oidForName(repo,'HEAD',(error,head) ->
+              res.send 500 if error
+              repo.getCommit(head,(error,parent) ->
+                res.send 500 if error
+                author = git.Signature.now("Schnulli","schnuller@schnulli.com")
+                repo.createCommit('HEAD',author,author,'message',oid,[parent],(error,cid) ->
+                  res.send 500 if error
+                  res.send("Successful commit: #{cid.sha()}")
+                )
+              )
+            )
+          )
         )
       )
     )
   )
 
 write = (req,res) ->
-  res.locals.json = req.data
   res.locals.work = req.params.work
   res.locals.page = req.params.page
   repopath = libpath.join(req.repository,".git")
-  filepath = libpath.join(req.index.byHash[req.params.work],"p"+('000'+req.params.page)[-4..]+".html")
+  filepath = libpath.join(req.index.byHash[req.params.work],"p"+('000'+req.params.page)[-4..]+".1.html")
   writepath = libpath.join(req.repository,filepath)
-  fs.writeFile(writepath, req.data, (error) ->
-    if (error)
-      res.send(500)
-    commit(repopath,filepath)
+  fs.writeFile(writepath, req.xml.toString(), (error) ->
+    res.send 500 if error
+    commit(res,repopath,filepath)
   )
 
 module.exports =

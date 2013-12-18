@@ -4,6 +4,8 @@ index = require('./routes/index')
 work = require('./routes/work')
 page = require('./routes/page')
 image = require('./routes/image')
+conversions = require('./routes/conversions')
+commit = require('./routes/commit')
 
 app = express()
 app.use(express.responseTime())
@@ -27,7 +29,7 @@ app.get('/:work/:page',         [ index.load, page.load ],
   page.show)
 app.get('/:work/:page/img',     [ index.load, image.load ],
   image.show)
-app.get('/:work/:page/commit',  [ index.load, image.load ],
-  image.show)
+app.post('/:work/:page',        [ index.load, conversions.do ],
+  commit.write)
 
 module.exports = app
