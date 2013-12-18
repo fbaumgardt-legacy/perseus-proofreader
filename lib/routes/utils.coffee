@@ -44,7 +44,7 @@ parser.run = (string) ->
 module.exports =
   worksIn: (repo) ->
     result = {byName:{},byHash:{}}
-    (result.byName[r] = libcrypto.createHash('md5').update(r).digest('hex')[..7]) for r in dirsIn(repo).filter (x) -> x[-5..] is '.book'
+    (result.byName[r] = libcrypto.createHash('md5').update(r).digest('hex')[..7]) for r in dirsIn(repo).filter((x) -> libfs.statSync(libpath.join(repo,x,"#{x}.book")).isDirectory()).map((x) -> "#{x}/#{x}.book")
     result.byHash[result.byName[value]] = value for value of result.byName
     result
   pagesIn: (work) ->
