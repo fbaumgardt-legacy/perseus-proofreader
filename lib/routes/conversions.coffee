@@ -9,5 +9,5 @@ toXML = (parent,obj) ->
 module.exports =
   do: (req,res,next) ->
     req.xml = res.locals.xml = new libxml.Document()
-    toXML(req.xml,req.body)
+    toXML(req.xml,req.body.dat)
     next()
