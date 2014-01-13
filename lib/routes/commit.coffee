@@ -18,10 +18,9 @@ commit = (res,repopath,filepath) ->
               res.send 500 if error
               repo.getCommit(head,(error,parent) ->
                 res.send 500 if error
-                author = git.Signature.now(res.locals.name,res.locals.email)
+                author = git.Signature.now(res.locals.username,res.locals.email)
                 repo.createCommit('HEAD',author,author,res.locals.msg,oid,[parent],(error,cid) ->
-                  res.send 500 if error
-                  res.send("Successful commit: #{cid.sha()}")
+                  if error then res.send 500 else res.send("#{cid.sha()}")
                 )
               )
             )
@@ -34,11 +33,11 @@ commit = (res,repopath,filepath) ->
 write = (req,res) ->
   res.locals.work = req.params.work
   res.locals.page = req.params.page
-  res.locals.name = req.body.name
+  res.locals.username = req.body.username
   res.locals.email = req.body.email
   res.locals.msg = req.body.msg
   repopath = libpath.join(req.repository,".git")
-  filepath = libpath.join(req.index.byHash[req.params.work],"p"+('000'+req.params.page)[-4..]+".1.html")
+  filepath = libpath.join(req.index.filter((x) -> x.hash is req.params.work)[0].path,"p"+('000'+req.params.page)[-4..]+".html")
   writepath = libpath.join(req.repository,filepath)
   fs.writeFile(writepath, req.xml.toString(), (error) ->
     res.send 500 if error

@@ -25,7 +25,7 @@ app.get('/',                    [ index.load ],
   index.show)
 app.get('/:work',               [ index.load, work.load ],
   work.show)
-app.get('/:work/:page',         [ index.load, page.load ],
+app.get('/:work/:page',         [ index.load, work.load, page.load ],
   page.show)
 app.get('/:work/:page/img',     [ index.load, image.load ],
   image.show)

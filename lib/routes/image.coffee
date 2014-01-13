@@ -3,7 +3,8 @@ path = require('path')
 
 module.exports =
   load: (req,res,next) ->
-    filepath = path.join(req.repository,req.index.byHash[req.params.work],"i"+('000'+req.params.page)[-4..]+".jpg")
+    dir = path.join(req.repository,req.index.filter((x) -> x.hash is req.params.work)[0].path)
+    filepath = path.join(dir,"i"+('000'+req.params.page)[-4..]+".jpg")
     req.image = res.locals.image = fs.readFileSync(filepath)
     next()
 

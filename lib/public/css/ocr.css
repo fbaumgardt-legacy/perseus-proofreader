@@ -1,8 +1,18 @@
-.page-container {
+.ocr_page {
     text-align: center;
     display:table;
+    width: 100%;
 }
 .ocr_line {
     margin-top:20px;
     margin-bottom:0px;
+}
+
+.breadcrumb {
+    margin-top: -20px;
+}
+.ocr_controls {
+    margin-top: 24px;
+    margin-bottom: 0px;
+    padding: 24px;
 }

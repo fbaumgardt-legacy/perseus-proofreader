@@ -9,4 +9,6 @@ lib/*.js
 lib/*.map
 lib/routes/*.js
 lib/routes/*.map
+lib/routes/util/*.js
+lib/routes/util/*.map
 vendor/ogl-data/*

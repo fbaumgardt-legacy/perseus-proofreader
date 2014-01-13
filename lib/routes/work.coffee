@@ -1,11 +1,10 @@
-utils = require('./utils')
-libpath = require('path')
+inv = require('./util/inventory')
+path = require('path')
 
 module.exports =
   load: (req,res,next) ->
-    req.work = res.locals.work = req.index.byHash[req.params.work]
-    path = libpath.join(req.repository,req.work)
-    req.pages = res.locals.pages = utils.pagesIn(path).map (x) -> x[1..-6].replace(/^0+/, "")
+    req.work = res.locals.work = req.index.filter((x) ->x.hash is req.params.work)[0]
+    req.pages = res.locals.pages = inv.pagesIn(path.join(req.repository,req.work.path))
     next()
 
   show: (req,res) ->
