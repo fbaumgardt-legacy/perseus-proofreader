@@ -1,0 +1,3 @@
+[submodule "vendor/ogl-data"]
+	path = vendor/ogl-data
+	url = https://fbaumgardt@github.com/OpenGreekAndLatin/greek-main.git
