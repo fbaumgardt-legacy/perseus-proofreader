@@ -36,9 +36,9 @@ write = (req,res) ->
   res.locals.username = req.body.username
   res.locals.email = req.body.email
   res.locals.msg = req.body.msg
-  repopath = libpath.join(req.repository,".git")
-  filepath = libpath.join(req.index.filter((x) -> x.hash is req.params.work)[0].path,"p"+('000'+req.params.page)[-4..]+".html")
-  writepath = libpath.join(req.repository,filepath)
+  repopath = libpath.join(req.repository,libpath.dirname(req.index.filter((x) -> x.hash is req.params.work)[0].path),".git")
+  filepath = libpath.join(libpath.basename(req.index.filter((x) -> x.hash is req.params.work)[0].path),"p"+('000'+req.params.page)[-4..]+".html")
+  writepath = libpath.join(req.repository,libpath.dirname(req.index.filter((x) -> x.hash is req.params.work)[0].path),filepath)
   fs.writeFile(writepath, req.xml.toString(), (error) ->
     res.send 500 if error
     commit(res,repopath,filepath)
