@@ -10,7 +10,7 @@
   "dependencies": {
     "express"        : "3.2.x",
     "coffee-script"  : "1.6.x",
-    "libxmljs"       : "0.8.x",
+    "libxmljs"       : "0.11.x",
     "ejs"            : "0.8.x",
     "nodegit"        : "0.1.x"
   },

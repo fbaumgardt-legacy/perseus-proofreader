@@ -19,8 +19,7 @@ commit = (res,repopath,filepath) ->
               repo.getCommit(head,(error,parent) ->
                 res.send 500 if error
                 author = git.Signature.now(res.locals.username,res.locals.email)
-                repo.createCommit('HEAD',author,author,res.locals.msg,oid,[parent],(error,cid) ->
-                  if error then res.send 500 else res.send("#{cid.sha()}")
+                repo.createCommit('HEAD',author,author,res.locals.msg,oid,[parent],(error,cid) -> if error then res.send 500 else res.send("#{cid.sha()}")
                 )
               )
             )
