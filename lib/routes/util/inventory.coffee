@@ -7,7 +7,7 @@ filesIn = (path,exts) -> fs.readdirSync(path).filter (x) -> x[x.lastIndexOf('.')
 
 module.exports =
   worksIn: (repo) ->
-    JSON.parse(fs.readFileSync(path.join(repo,"inventory.json"),"utf8"))
+    filesIn(path.join(repo,"inventory"),[".json"]).map((x) -> JSON.parse(fs.readFileSync(path.join(repo,"inventory",x),"utf8"))).reverse()
   pagesIn: (work) ->
     JSON.parse(fs.readFileSync(path.join(work,"inventory.json"),"utf8"))
   inventory: (dir) ->
