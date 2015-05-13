@@ -8,6 +8,7 @@ module.exports =
     dir = path.join(req.repository,req.index.filter((x) -> x.hash is req.params.work)[0].path)
     file = path.join(dir,"p"+('000'+req.params.page)[-4..]+".html")
     req.json = res.locals.json = parsing.xml2json.run fs.readFileSync(file,'utf8')
+    req.git = res.locals.git = {"user":req.app.get('user'),"email":req.app.get('email')}
     next()
 
   show: (req,res) ->
