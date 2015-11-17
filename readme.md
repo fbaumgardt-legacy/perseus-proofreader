@@ -14,7 +14,7 @@ git clone https://github.com/fbaumgardt/perseus-proofreader
 2. Run npm install in root directory to install dependencies:<br>
  ```
 cd perseus-proofreader
-```
+```<br>
  ```
 npm install
 ```
@@ -31,7 +31,7 @@ scala localInventory.scala <repo-id>
  ```
 scala globalInventory.scala <--archive/--heml/--hathi> <repo-id>
 ```
-4. Run npm start
+4. Run npm start<br>
  ```
 npm start
 ```
