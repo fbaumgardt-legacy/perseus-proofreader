@@ -12,3 +12,5 @@ lib/routes/*.map
 lib/routes/util/*.js
 lib/routes/util/*.map
 vendor/ogl-data/*
+!vendor/ogl-data/*.scala
+!vendor/ogl-data/*.md
