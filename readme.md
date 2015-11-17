@@ -6,7 +6,7 @@ sudo apt-get install git scala cmake node npm libxml2-dev && npm install -g coff
   ```
 1. Checkout project and ogl-data submodule:<br>
  ```
-cd <Verzeichnis in dem der Proofreader Ordner liegen soll>
+cd <Folder that contains the Proofreader.>
 ```<br>
  ```
 git clone https://github.com/fbaumgardt/perseus-proofreader
@@ -36,3 +36,5 @@ scala globalInventory.scala <--archive/--heml/--hathi> <repo-id>
 npm start
 ```
 5. Server runs on port 7070
+
+Default values for username and email are currently hardcoded in lib/server.coffee (sorry).
