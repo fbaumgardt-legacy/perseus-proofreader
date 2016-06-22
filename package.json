@@ -8,18 +8,18 @@
     "test": "mocha --prof --recursive --compilers coffee:coffee-script"
   },
   "dependencies": {
-    "express"        : "3.2.x",
-    "coffee-script"  : "1.6.x",
-    "libxmljs"       : "0.11.x",
-    "ejs"            : "0.8.x",
-    "nodegit"        : "0.1.x"
+    "express"        : "3.21.x",
+    "coffee-script"  : "1.10.x",
+    "libxmljs"       : "0.18.x",
+    "ejs"            : "2.4.x",
+    "nodegit"        : "0.13.x"
   },
   "devDependencies": {
-    "supertest": "0.7.x"
+    "supertest": "1.2.x"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "6.2.x",
+    "npm": "3.10.x"
   },
   "repository": "",
   "author": "Frederik Baumgardt",
